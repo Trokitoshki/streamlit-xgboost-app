@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import xgboost as xgb
 
 # Cargar el modelo entrenado
 model = joblib.load('xgboost_model.pkl')
@@ -58,9 +59,26 @@ input_data = pd.DataFrame({
     'NivelDeSatisfacciónDeLosEstudiantes%': [NivelDeSatisfacciónDeLosEstudiantes]
 })
 
+# Asegurarse de que las columnas estén en el mismo orden que el modelo espera
+# Añade todas las columnas en el mismo orden que se usaron para entrenar el modelo
+columnas = [
+    'NivelEducativo', 'Item', 'ModalidadAtencion', 'NecesidadesEspeciales', 
+    'TipoDeAlimento', 'Incidente', 'Descripción', 'Clima', 'Infraestructura', 
+    'AccesoAInternet', 'ParticipaciónEnProgramasDeApoyo', 
+    'NúmeroDeEstudiantesEsperados', 'NúmeroDeEstudiantesPresentes', 
+    'IngresoMedio', 'CantidadDeAlimentosKg', 'MatemáticaPromedio%', 
+    'LecturaPromedio%', 'Temperatura', 'NúmeroDeDocentes', 
+    'NivelDeSatisfacciónDeLosEstudiantes%'
+]
+
+# Mostrar las entradas del usuario
+st.write('## Datos Introducidos:')
+st.write(input_data)
+
 # Realizar la predicción
 if st.button('Predecir'):
     try:
+        input_data = input_data[columnas]  # Asegurarse de que las columnas estén en el orden correcto
         prediction = model.predict(input_data)
         st.write(f'## Predicción: {prediction[0]} kg')
     except Exception as e:
