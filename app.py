@@ -25,11 +25,20 @@ input_data = pd.DataFrame({
     # Añadir más características según tu modelo...
 })
 
+# Asegurarse de que las columnas estén en el mismo orden que el modelo espera
+# Ajusta las columnas según sea necesario
+input_data = input_data[['NúmeroDeEstudiantesEsperados', 'IngresoMedio']]  # Añadir más columnas si es necesario
+
 # Mostrar las entradas del usuario
 st.write('## Datos Introducidos:')
 st.write(input_data)
 
 # Realizar la predicción
 if st.button('Predecir'):
-    prediction = model.predict(input_data)
-    st.write(f'## Predicción: {prediction[0]} kg')
+    try:
+        prediction = model.predict(input_data)
+        st.write(f'## Predicción: {prediction[0]} kg')
+    except Exception as e:
+        st.write("Error al realizar la predicción:")
+        st.write(e)
+
