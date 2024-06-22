@@ -13,10 +13,10 @@ st.write("""
 """)
 
 # Definir las entradas del usuario basadas en las características especificadas
-NivelEducativo = st.selectbox('Nivel Educativo', ['Primaria', 'Secundaria'])
+NivelEducativo = st.selectbox('Nivel Educativo', ['Inicial', 'Primaria', 'Secundaria'])
 ModalidadAtencion = st.selectbox('Modalidad de Atención', ['Presencial', 'Virtual'])
 NecesidadesEspeciales = st.selectbox('Necesidades Especiales', ['Sí', 'No'])
-TipoDeAlimento = st.selectbox('Tipo de Alimento', ['Fresco', 'Seco'])
+TipoDeAlimento = st.selectbox('Tipo de Alimento', ['Carnes', 'Frutas', 'Granos', 'Lácteos', 'Verduras'])
 NúmeroDeEstudiantesEsperados = st.number_input('Número de Estudiantes Esperados', min_value=0, max_value=1000, value=500)
 
 # Crear DataFrame con las entradas del usuario
