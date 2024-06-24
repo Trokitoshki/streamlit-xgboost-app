@@ -43,16 +43,16 @@ def simulate_prediction(data):
     estudiantes_presentes = data['NúmeroDeEstudiantesPresentes'][0]
 
     # Calcular la cantidad base de alimentos según el nivel educativo y el tipo de alimento
-    base_alimentos = nivel_educativo_factor[nivel_educativo] * estudiantes_presentes
-    base_alimentos_tipo = tipo_alimento_factor[tipo_alimento] * estudiantes_presentes
+    base_alimentos = nivel_educativo_factor[nivel_educativo] * estudiantes_presentes * 0.97
+    base_alimentos_tipo = tipo_alimento_factor[tipo_alimento] * estudiantes_presentes * 1.13
 
     # Ajustar la cantidad de alimentos según el ratio de estudiantes
     if ratio_estudiantes >= 0.8:
         # Ratio alto
-        prediccion = (base_alimentos + base_alimentos_tipo) * 0.93
+        prediccion = (base_alimentos + base_alimentos_tipo) * 0.97
     elif 0.5 <= ratio_estudiantes < 0.8:
         # Ratio medio
-        prediccion = (base_alimentos + base_alimentos_tipo) * 0.74
+        prediccion = (base_alimentos + base_alimentos_tipo) * 0.71
     else:
         # Ratio bajo
         prediccion = (base_alimentos + base_alimentos_tipo) * 0.53
