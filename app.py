@@ -34,8 +34,8 @@ st.write(input_data)
 # Simular la predicción utilizando las condiciones especificadas
 def simulate_prediction(data):
     # Asignar valores base según el nivel educativo
-    nivel_educativo_factor = {'Inicial': 0.5, 'Primaria': 1.0, 'Secundaria': 1.5}
-    tipo_alimento_factor = {'Carnes': 0.2, 'Frutas': 0.3, 'Lácteos': 0.25, 'Verduras': 0.35}
+    nivel_educativo_factor = {'Inicial': 0.79, 'Primaria': 1.0, 'Secundaria': 1.43}
+    tipo_alimento_factor = {'Carnes': 0.21, 'Frutas': 0.32, 'Lácteos': 0.24, 'Verduras': 0.37}
     
     nivel_educativo = data['NivelEducativo'][0]
     tipo_alimento = data['TipoDeAlimento'][0]
@@ -52,10 +52,10 @@ def simulate_prediction(data):
         prediccion = base_alimentos + base_alimentos_tipo
     elif 0.5 <= ratio_estudiantes < 0.8:
         # Ratio medio
-        prediccion = (base_alimentos + base_alimentos_tipo) * 0.75
+        prediccion = (base_alimentos + base_alimentos_tipo) * 0.74
     else:
         # Ratio bajo
-        prediccion = (base_alimentos + base_alimentos_tipo) * 0.5
+        prediccion = (base_alimentos + base_alimentos_tipo) * 0.53
     
     return prediccion
 
